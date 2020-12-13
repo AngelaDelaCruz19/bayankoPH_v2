@@ -41,21 +41,20 @@ switch ($tag)
 
         $cov =  '
           <ol class="carousel-indicators">
-             <li data-target="#cover' . $i . '" data-slide-to="0" class="active"></li>
+                         <li data-target="#cover" data-slide-to="0" class="active"></li>
+            
                 ';
                 if(count($cover_images) != 1){
                         for ($xv=1; $xv < count($cover_images); $xv++) { 
 
                             if( $cover_images[$xv]  != ""){
                                  $cov .= '
-                        <li data-target="#cover' . $i . '" data-slide-to="' . $xv . '"></li>
+                         <li data-target="#cover" data-slide-to="' . $xv . '"></li>
                             ';
                             }
                         }
                 }
                 
-
-
         $cov .=  '
           </ol>
           <div class="carousel-inner">
@@ -212,7 +211,7 @@ $mediafiles = "";
         $q = "INSERT INTO ume_user_secondaryinfo SET
 
         user_id='" . $_SESSION["user_id"] ."'
-        ,motto='" . mysqli_real_escape_string($c,$_POST["motto"]) ."'
+        ,wordsstory='" . mysqli_real_escape_string($c,$_POST["wordsstory"]) ."'
         ,job='" . mysqli_real_escape_string($c,$_POST["job"]) ."'
         ,contact='" . mysqli_real_escape_string($c,$_POST["contact"]) ."'
         ,location='" . mysqli_real_escape_string($c,$_POST["location"]) ."'
@@ -225,7 +224,7 @@ $mediafiles = "";
         //JUST UPDATE
         $q = "UPDATE ume_user_secondaryinfo SET
         
-        motto='" . mysqli_real_escape_string($c,$_POST["motto"]) ."'
+        wordsstory='" . mysqli_real_escape_string($c,$_POST["wordsstory"]) ."'
         ,job='" . mysqli_real_escape_string($c,$_POST["job"]) ."'
         ,contact='" . mysqli_real_escape_string($c,$_POST["contact"]) ."'
         ,location='" . mysqli_real_escape_string($c,$_POST["location"]) ."'
@@ -1083,7 +1082,7 @@ echo '<center>
                               $q = "INSERT INTO ume_user_secondaryinfo SET
 
         user_id='" . $_SESSION["user_id"] ."'
-        ,motto=''
+        ,wordsstory=''
         ,job=''
         ,contact=''
         ,location=''

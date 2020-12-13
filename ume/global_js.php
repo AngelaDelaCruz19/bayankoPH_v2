@@ -164,7 +164,7 @@ function CleaNotif_JustNotif(){
     data: {tag: "DISPLAY_COVER"},
     success: function(data){
       // alert(data);
-      $("#covPhotos").html(data);
+      $(".covPhotos").html(data);
     }
   })
   }

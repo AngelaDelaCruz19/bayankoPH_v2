@@ -76,7 +76,7 @@
 </form>
 
 <script type="text/javascript">
-     $('form#change_covPhoto').change(function(e) {
+     $('form#change_covPhoto').submit(function(e) {
 
       e.preventDefault();    
         var formData = new FormData(this);
@@ -91,8 +91,9 @@
 
                 $('#cover_preview').html("");
                 $("#inpcover_uploadfile").val("");
-                $("#modal_changecoverphoto").hide();
+                // $("#modal_changecoverphoto").hide();
                 alert("Cover Photos Upladed");
+                window.location.href = "profile.php"
             }
         });
     });

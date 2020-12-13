@@ -86,29 +86,8 @@
                
                <div class="">	
 		            <div id="cover" class="carousel slide" data-ride="carousel" style="position: relative;">
-                     <div id="covPhotos">	              
-   		               <!-- <ul class="carousel-indicators d-flex justify-content-center" style="">
-   	                     <li data-target="#cover" data-slide-to="0" class="active"></li>
-   	                     <li data-target="#cover" data-slide-to="1"></li>
-   	                     <li data-target="#cover" data-slide-to="2"></li>
-   	                     <li data-target="#cover" data-slide-to="3"></li>
-   	                  </ul>
-   	                  <div class="carousel-inner" role="listbox" style="height:400px; float: top;">
-   	                  	
-   	                     <div class="carousel-item active">
-   	                        <img class="d-block w-100" src="<?php echo $mainDIR; ?>/images/sirtoby/5.jpg" alt="First slide">
-   	                     </div>
-   	                     <div class="carousel-item">
-   	                        <img class="d-block w-100" src="<?php echo $mainDIR; ?>/images/sirtoby/6.jpg" alt="Second slide">
-   	                     </div>
-   	                     <div class="carousel-item">
-   	                        <img class="d-block w-100" src="<?php echo $mainDIR; ?>/images/sirtoby/7.jpg" alt="Second slide">
-   	                     </div>
-   	                     <div class="carousel-item">
-   	                        <img class="d-block w-100" src="<?php echo $mainDIR; ?>/images/sirtoby/8.jpg" alt="Second slide">
-   	                     </div>
-   	                     
-   	                  </div> -->
+                     <div class="covPhotos">	              
+   		            
                      </div>
 	                  <div class="" style="position: absolute;margin-top:-400px;z-index: 1;width: 100%;">
 	                  	
@@ -121,7 +100,7 @@
    				       		<div class="d-flex justify-content-center mt-3" style="">
    					       		<img class="p-2" src="<?php echo $mainDIR; ?>/images/bklogo.png" alt="Second slide" style="height: 50px; width: 100px; background-color: white;">
    					       	</div>
-   					       	<h4 class="mt-4">6 Words Story</h4>
+   					       	<h4 class="mt-4 html_fill_wordsstory"></h4>
    				       	</center>
    	               </div>
 	               </div>	
@@ -296,25 +275,29 @@
                      <div class="col-lg-4 col-sm-12">
                         <div class="d-flex flex-wrap align-content-center" style="height: 81%">
                            <!-- 	<img class="" data-toggle="modal" data-dismiss="modal" data-target="#modal_changeprofilepic" src="<?php echo $mainDIR; ?>/images/sirtoby/40.jpg"> -->
-                           <div class="post_profile_lg avatar-lg mx-auto d-block" data-toggle="modal" data-dismiss="modal" data-target="#modal_changeprofilepic" style="background-image: url(<?php echo $_SESSION['pic_profile']; ?>);"></div>
+                           <div class="post_profile_lg avatar-lg mx-auto d-block" style="background-image: url(<?php echo $_SESSION['pic_profile']; ?>);"></div>
                         </div>
                         <center>
-                           <p class="mt-3">Profile Photo</p>
+                           <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#modal_changeprofilepic"><p class="mt-3">Change Profile Photo</p></a>
                         </center>
                      </div>
                      <div class="col-lg-8 col-sm-12">
-                        <img class="cover-edit mx-auto d-block" data-toggle="modal" data-dismiss="modal" data-target="#modal_changecoverphoto" src="<?php echo $_SESSION["pic_coverphoto"]; ?>"> 
+                        <div id="coverview" class="carousel slide" data-ride="carousel" style="position: relative;">
+                           <div class="covPhotos">               
+                           
+                           </div>
+                        </div>
+                       <!--  <img class="cover-edit mx-auto d-block" data-toggle="modal" data-dismiss="modal" data-target="#modal_changecoverphoto" src="<?php echo $_SESSION["pic_coverphoto"]; ?>">  -->
                         <center>
-                           <p class="mt-3">Cover Photo</p>
+                           <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#modal_changecoverphoto"><p class="mt-3">Change Cover Photo</p></a>
                         </center>
                      </div>
                   </div>
                   <div class="dropdown-divider m-3"></div>
                   <div class="pl-3 pr-3">
                      <h4 class="mb-4">Profile Information  <button type="button" class="btn btn-secondary float-right" data-dismiss="modal" data-toggle="modal" data-target="#editable_profile" ><i class="fas fa-user-edit"></i> Edit Info</button></h4>
-                     <h5>Motto</h5>
-                     <p class="html_fill_motto">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua.
+                     <h5>6 Words Story</h5>
+                     <p class="html_fill_wordsstory">
                      </p>
                      <p class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-briefcase "></i> <span class="html_fill_job">Job</span></p>
                      <p class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-phone-alt"></i> <span class="html_fill_contactno">Contact</span></p>
@@ -327,7 +310,7 @@
          </div>
       </div>
       <!-- Edit profile -->
-      <form action="../server/server.php" method="POST">
+      <form action="../server/server.php" method="POST" id="updatesecondinfo">
          <input type="hidden" name="tag" value="UPDATE_SECONDARYINFO_SPECIFIC">
          <div class="modal" id="editable_profile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
@@ -341,8 +324,9 @@
                   <div class="modal-body mod-body">
                      <div class="pl-3 pr-3">
                         <div class="form-group">
-                           <label> Motto</label>
-                           <textarea type="text" name="motto" class="form-control html_fill_motto" placeholder="Write your motto here..." rows="6"></textarea>
+                           <label> 6 Words Story</label>
+                           <textarea type="text" name="wordsstory" class="form-control html_fill_wordsstory" placeholder="Be creative! Write your 6 Words Story" rows="6"></textarea>
+                           <span id="nowords" style="color: red;font-size: 12px;">You only have 6 word to put.<span>
                         </div>
                         <div class="form-group">
                            <label><i class="mt-3 fas fa-briefcase "></i> Job Description</label>
@@ -382,12 +366,28 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <!-- own post -->
 <script type="text/javascript">
+   $('#nowords').hide();
+   var content;
+   $('textarea').on('keyup', function(){
+       // count words
+       var words = $(this).val().split(/\s+/).length;
+       // limit message
+       if(words<7){
+         $("#nowords").hide();
+       } else {    
+         $("#nowords").show();
+       }
+   });
+    $('form#updatesecondinfo').submit(function(e) {
+      if($('#nowords').is(":visible")){
+         alert('Cant update your information, please check your 6 words story');
+          e.preventDefault();
+      }else{
+
+      }
+   });
+
     DisplayCoverPhotos();
-    // ganyan okay!?tapos? .. un ung tanmong ko kanina kung pano mo tinatawag kase ung sa post wala nman
-    //search ko ha eto GetOwnPost
-    // ok eh paano ko yan i ppwesto don sa taas
-
-
    function PostAfterAction(){
 
    GetNewsFeed("me");
@@ -412,7 +412,7 @@ function AfterShareAction(){
       }else{
          data = JSON.parse(data);
          // motto 
-         $(".html_fill_motto").html(data["motto"]);
+         $(".html_fill_wordsstory").html(data["wordsstory"]);
          // contact no 
          $(".html_fill_contactno").html(data["contact"]);
          // location 
@@ -425,7 +425,7 @@ function AfterShareAction(){
          $(".html_fill_job").html(data["job"]);
 
          // motto 
-         $(":input.html_fill_motto").val(data["motto"]);
+         $(":input.html_fill_wordsstory").val(data["wordsstory"]);
          // contact no 
          $(":input.html_fill_contactno").val(data["contact"]);
          // location 
