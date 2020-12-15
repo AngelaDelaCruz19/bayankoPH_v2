@@ -203,8 +203,11 @@
                         </a>
                      </div>
                   
-                  <div class="col-sm-12" id="parent_ads">
-                    <a href="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/180c2678706641.5cacc73fe5edb.gif" target="_blank"><img src="https://blackmilkmedia.com/wp-content/uploads/2020/01/advertiser-2.gif" class="rounded" width="100%;" id="source_ads"></a>
+                  <div class="col-sm-12" id="parent_ads" >
+                    <a href="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/180c2678706641.5cacc73fe5edb.gif" target="_blank">
+                     <img src="images/ads.png" class="rounded bg-dynamic"  width="100%;" id="source_ads">
+                     <!-- <img src="https://blackmilkmedia.com/wp-content/uploads/2020/01/advertiser-2.gif" class="rounded"  width="100%;" id="source_ads"> -->
+                  </a>
 
                   </div>
                </div>

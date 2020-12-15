@@ -11,6 +11,29 @@ $mainDIR = "http://" . $_SERVER["HTTP_HOST"] . "/bayankoPH";
 $tag = $_POST["tag"];
 switch ($tag)
 {
+    case 'UPDATE_FULL_NAME':
+    $fname=$_POST["fname"];
+    $mname=$_POST["mname"];
+    $lname=$_POST["lname"];
+        $q = "UPDATE users SET
+        fname='" . mysqli_real_escape_string($c,$fname) ."'
+        ,mname='" . mysqli_real_escape_string($c,$mname) ."'
+        ,lname='" . mysqli_real_escape_string($c,$lname) ."'
+
+        WHERE id='" . $_SESSION["user_id"] . "'";
+         $res = mysqli_query($c,$q);
+         if ($c->query($q) === TRUE) {
+                $_SESSION["fname"] = $fname;
+                $_SESSION["mname"] = $mname;
+                $_SESSION["lname"] = $lname;
+                $_SESSION["fullname"] = $fname . " " . $mname . " " . $lname;
+                echo "updated";
+                return'';
+            } else {
+              echo "Error updating record: " . $c->error;
+            }
+            $req = mysqli_query($c, $q) or die(mysqli_error($c));      
+    break;
     case 'POST_UPLCOVERPHOTOS':
 
         $coverfiles="";
@@ -68,6 +91,57 @@ switch ($tag)
                          $cov .= '
                     <div class="carousel-item">
                         <div class="d-block bg_worthy" width="100%" style="height: 400px; background-image:url(' . $cover_images[$xv] . ')"  src="" alt=""></div>
+                    </div>
+                    ';
+                    }
+           
+                }
+            }
+
+            echo $cov;
+           
+    break;
+
+    case 'DISPLAY_COVER_MODAL':
+        $q = "SELECT * FROM users WHERE id='" . $_SESSION["user_id"] . "'";
+        $prod_data =  mysqli_query($c,$q);
+        $json_data = mysqli_fetch_all($prod_data,MYSQLI_ASSOC);
+            $cover_images ="";
+        for ($i = 0;$i < count($json_data);$i++){
+
+            $cover_images = explode(",", $json_data[$i]["pic_coverphoto"]);
+        }
+
+
+        $cov =  '
+          <ol class="carousel-indicators">
+                         <li data-target="#coverview" data-slide-to="0" class="active"></li>
+            
+                ';
+                if(count($cover_images) != 1){
+                        for ($xv=1; $xv < count($cover_images); $xv++) { 
+
+                            if( $cover_images[$xv]  != ""){
+                                 $cov .= '
+                         <li data-target="#coverview" data-slide-to="' . $xv . '"></li>
+                            ';
+                            }
+                        }
+                }
+                
+        $cov .=  '
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="d-block bg_worthy" width="100%" style="height: 240px; background-image:url(' . $cover_images[0]  . ')"  src="" alt=""></div>
+            </div>
+            ';
+            if(count($cover_images) != 1){
+                for ($xv=1; $xv < count($cover_images); $xv++) { 
+                    if( $cover_images[$xv]  != ""){
+                         $cov .= '
+                    <div class="carousel-item">
+                        <div class="d-block bg_worthy" width="100%" style="height: 240px; background-image:url(' . $cover_images[$xv] . ')"  src="" alt=""></div>
                     </div>
                     ';
                     }
@@ -246,6 +320,8 @@ $mediafiles = "";
          }else{
             //LOAD SECONDARY INFO
             echo json_encode(mysqli_fetch_array($res));
+           
+
          }
         break;
     case 'LOAD_USER_DATA_PROFILEVIEW':

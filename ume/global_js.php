@@ -168,6 +168,18 @@ function CleaNotif_JustNotif(){
     }
   })
   }
+  function ModalCoverPhotos(){
+    $.ajax({
+    type:"POST",
+    url: "../server/server.php",
+    data: {tag: "DISPLAY_COVER_MODAL"},
+    success: function(data){
+      // alert(data);
+      $("#modalCover").html(data);
+    }
+  })
+  }
+
 
   function DeclineFriendRequest(FriendStatusID){
 $.ajax({
@@ -180,6 +192,7 @@ $.ajax({
       }
     })
   }
+
 		function AcceptFriendRequest(FriendStatusID){
   
 $.ajax({
@@ -219,6 +232,7 @@ if(!isset($_GET["kword"])){
     })
   }
 
+  
   function AddFriend(userid){
     $.ajax({
       type:"POST",
@@ -241,6 +255,38 @@ if(!isset($_GET["kword"])){
 		})
 
 	}
+   function AppearSecondaryInfotoPage(data){
+      if(data == "none"){
+
+      }else{
+         data = JSON.parse(data);
+         // motto 
+         $(".html_fill_wordsstory").html(data["wordsstory"]);
+         // contact no 
+         $(".html_fill_contactno").html(data["contact"]);
+         // location 
+         $(".html_fill_location").html(data["location"]);
+         // education 
+         $(".html_fill_education").html(data["education"]);
+         // email contact
+         $(".html_fill_emailcontact").html(data["email_contact"]);
+         // job info 
+         $(".html_fill_job").html(data["job"]);
+
+         // motto 
+         $(":input.html_fill_wordsstory").val(data["wordsstory"]);
+         // contact no 
+         $(":input.html_fill_contactno").val(data["contact"]);
+         // location 
+         $(":input.html_fill_location").val(data["location"]);
+         // education 
+         $(":input.html_fill_education").val(data["education"]);
+         // email contact
+         $(":input.html_fill_emailcontact").val(data["email_contact"]);
+         // job info 
+         $(":input.html_fill_job").val(data["job"]);
+      }
+   }
 	function readURL(input,prefiewid) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();

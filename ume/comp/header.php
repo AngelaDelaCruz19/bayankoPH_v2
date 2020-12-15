@@ -125,6 +125,10 @@
 } ?>
 <script type="text/javascript">
   GlobalRunner();
+  $(document).ready(function() {
+      GetProfileInfoBySpecificID(<?php echo json_encode($_SESSION["user_id"]); ?>);
+      AppearSecondaryInfotoPage();
+   });
 </script>
 
 <br>

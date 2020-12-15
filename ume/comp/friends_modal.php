@@ -7,6 +7,7 @@
       </div>
       <div class="modal-body mod-body" id="parent_friend">
       <div id="friends_panel">
+        
       	
       </div>
       </div>

@@ -32,15 +32,16 @@
                            <p class="font-weight-bold">Name</p>
                         </div>
                         <div class="col-lg-8 col-sm-12">
-                           <span>Arah Angela D. Dela Cruz</span><a href="#"><i class="fas fa-edit float-right"></i></a>
-                        </div>
-                     </div>
-                     <div class="row">
-                        <div class="col-lg-4 col-sm-12">
-                           <p class="font-weight-bold">Username</p>
-                        </div>
-                        <div class="col-lg-8 col-sm-12">
-                           <span>Angela</span><a href="#"><i class="fas fa-edit float-right"></i></a>
+
+                           <form id="edit_name" method="post" enctype="multipart/form-data"  onsubmit="return;">
+                              <span class="" id="bk_name"><?php echo $_SESSION["fullname"];?></span>
+                              <input type="hidden" name="tag" value="UPDATE_FULL_NAME">
+                              <input id="inp_fname" type="text" name="e_fname" class="mt-1 mb-1" required="" style="display: none; width: 80%" placeholder="First name" value="<?php echo $_SESSION["fname"];?>">
+                              <input id="inp_mname" type="text" name="e_mname" class="mt-1 mb-1" style="display: none; width: 80%;" placeholder="Middle name (Optional)" value="<?php echo $_SESSION["mname"];?>">
+                              <input id="inp_lname" type="text" name="e_lname" class="mt-1 mb-1" required="" style="display: none; width: 80%" placeholder="Last name" value="<?php echo $_SESSION["lname"];?>">
+                              <input type="submit" style="visibility: hidden;">
+                              <a href="#" id="e_name"><i class="fas fa-edit float-right" style="top: 0;"></i></a>
+                           </form>
                         </div>
                      </div>
                      <div class="row">
@@ -48,7 +49,13 @@
                            <p class="font-weight-bold">Contact</p>
                         </div>
                         <div class="col-lg-8 col-sm-12">
-                           <span>09488695804</span><a href="#"><i class="fas fa-edit float-right"></i></a>
+                           <form id="edit_number" method="post" enctype="multipart/form-data"  onsubmit="return;">
+                              <span class="html_fill_contactno" id="bk_num"></span>
+                              <input type="hidden" name="tag" value="UPDATE_NUMBER">           
+                              <input id="inp_number" type="text" name="e_number" class="mt-1 mb-1" required="" style="display: none; width: 80%" placeholder="Contact number">
+                              <input type="submit" style="visibility: hidden;">
+                              <a href="#" id="e_number"><i class="fas fa-edit float-right"></i></a>
+                           </form>
                         </div>
                      </div>
                      <div class="row">
@@ -56,7 +63,7 @@
                            <p class="font-weight-bold">Ad Account Contact</p>
                         </div>
                         <div class="col-lg-8 col-sm-12">
-                           <span>arahangeladel@gmail.com</span><a href="#"><i class="fas fa-edit float-right"></i></a>
+                           <span class="html_fill_emailcontact"></span><a href="#"><i class="fas fa-edit float-right"></i></a>
                         </div>
                      </div>
                      <div class="row">
@@ -494,3 +501,55 @@
       </div>
    </div>
 </div>
+<script type="text/javascript">
+
+   $(document).ready(function(){
+       $("#e_name").click(function(){
+         $('#bk_name').toggle('show');
+         $('#inp_fname').toggle('show');
+         $('#inp_mname').toggle('show');
+         $('#inp_lname').toggle('show');
+       });
+       $("#e_number").click(function(){
+         $('#bk_num').toggle('show');
+         $('#inp_number').toggle('show');
+       });
+   });
+   $('form#edit_name').submit(function(e) {
+      
+         var fname = $('#inp_fname').val();
+         var mname = $('#inp_mname').val(); 
+         var lname = $('#inp_lname').val(); 
+         $.ajax({
+         type: "POST",
+         url: "../server/server.php",
+         data : {tag: "UPDATE_FULL_NAME",fname:fname,mname:mname,lname:lname},
+         success: function(data){
+         
+         $('#bk_name').toggle('show');
+           $('#inp_fname').css('display','none');
+           $('#inp_mname').css('display','none');
+           $('#inp_lname').css('display','none');
+         }
+       })
+     });
+   $('form#edit_name').submit(function(e) {
+      
+         var fname = $('#inp_fname').val();
+         var mname = $('#inp_mname').val(); 
+         var lname = $('#inp_lname').val(); 
+         $.ajax({
+         type: "POST",
+         url: "../server/server.php",
+         data : {tag: "UPDATE_FULL_NAME",fname:fname,mname:mname,lname:lname},
+         success: function(data){
+         
+         $('#bk_name').toggle('show');
+           $('#inp_fname').css('display','none');
+           $('#inp_mname').css('display','none');
+           $('#inp_lname').css('display','none');
+         }
+       })
+     });
+
+</script>

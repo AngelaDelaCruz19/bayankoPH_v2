@@ -283,7 +283,7 @@
                      </div>
                      <div class="col-lg-8 col-sm-12">
                         <div id="coverview" class="carousel slide" data-ride="carousel" style="position: relative;">
-                           <div class="covPhotos">               
+                           <div id="modalCover">               
                            
                            </div>
                         </div>
@@ -388,6 +388,7 @@
    });
 
     DisplayCoverPhotos();
+    ModalCoverPhotos();
    function PostAfterAction(){
 
    GetNewsFeed("me");
@@ -402,42 +403,12 @@ function AfterShareAction(){
    $(document).ready(function() {
       GetNewsFeed("me");
       GetAllFriends();
-      GetProfileInfoBySpecificID(<?php echo json_encode($_SESSION["user_id"]); ?>);
+      // GetProfileInfoBySpecificID(<?php echo json_encode($_SESSION["user_id"]); ?>);
    });
 
+// AppearSecondaryInfotoPage();
 
-   function AppearSecondaryInfotoPage(data){
-      if(data == "none"){
-
-      }else{
-         data = JSON.parse(data);
-         // motto 
-         $(".html_fill_wordsstory").html(data["wordsstory"]);
-         // contact no 
-         $(".html_fill_contactno").html(data["contact"]);
-         // location 
-         $(".html_fill_location").html(data["location"]);
-         // education 
-         $(".html_fill_education").html(data["education"]);
-         // email contact
-         $(".html_fill_emailcontact").html(data["email_contact"]);
-         // job info 
-         $(".html_fill_job").html(data["job"]);
-
-         // motto 
-         $(":input.html_fill_wordsstory").val(data["wordsstory"]);
-         // contact no 
-         $(":input.html_fill_contactno").val(data["contact"]);
-         // location 
-         $(":input.html_fill_location").val(data["location"]);
-         // education 
-         $(":input.html_fill_education").val(data["education"]);
-         // email contact
-         $(":input.html_fill_emailcontact").val(data["email_contact"]);
-         // job info 
-         $(":input.html_fill_job").val(data["job"]);
-      }
-   }
+  
 
 
 
