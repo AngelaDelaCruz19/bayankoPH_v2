@@ -27,6 +27,16 @@ $.ajax({
     }
   })
 }
+function SecondaryInformation(){
+$.ajax({
+    type:"POST",
+    url: "../server/server.php",
+    data: {tag:"ALL_SECONDARY_INFORMATION"},
+    success: function(data){
+
+    }
+  })
+}
 function IndicateMyReaction(html_id,post_id){
   $.ajax({
     type:"POST",
@@ -118,6 +128,7 @@ function CleaNotif_JustNotif(){
       }
     })
   }
+
   function GetAllOfMyNotification(){
     
     $.ajax({

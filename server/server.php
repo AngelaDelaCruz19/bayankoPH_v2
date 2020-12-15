@@ -11,6 +11,35 @@ $mainDIR = "http://" . $_SERVER["HTTP_HOST"] . "/bayankoPH";
 $tag = $_POST["tag"];
 switch ($tag)
 {
+    case 'ALL_SECONDARY_INFORMATION':
+        $q = "SELECT * FROM ume_user_secondaryinfo WHERE user_id='" . $_SESSION["user_id"] . "'";
+        $second_data =  mysqli_query($c,$q);
+        $json_data=mysqli_fetch_array($second_data);
+        $_SESSION['contact']=$json_data['contact'];
+        $_SESSION['wordsstory']=$json_data['wordsstory'];
+        $_SESSION['location']=$json_data['location'];
+        $_SESSION['education']=$json_data['education'];
+        $_SESSION['email_contact']=$json_data['email_contact'];
+        $_SESSION['job']=$json_data['job']; 
+        echo $_SESSION['job'];
+        return'';         
+    break;
+    case 'UPDATE_NUMBER':
+    $number=$_POST["number"];
+        $q = "UPDATE ume_user_secondaryinfo SET
+        contact='" . mysqli_real_escape_string($c,$number) ."'
+
+        WHERE user_id='" . $_SESSION["user_id"] . "'";
+         $res = mysqli_query($c,$q);
+         if ($c->query($q) === TRUE) {
+            $_SESSION['contact']=$number;
+                echo $number;
+                return'';
+            } else {
+              echo "Error updating record: " . $c->error;
+            }
+            $req = mysqli_query($c, $q) or die(mysqli_error($c));      
+    break;
     case 'UPDATE_FULL_NAME':
     $fname=$_POST["fname"];
     $mname=$_POST["mname"];
@@ -292,6 +321,12 @@ $mediafiles = "";
         ,education='" . mysqli_real_escape_string($c,$_POST["education"]) ."'
         ,email_contact='" . mysqli_real_escape_string($c,$_POST["email_contact"]) ."'
         ";
+         $_SESSION['contact']=$_POST["contact"];
+        $_SESSION['wordsstory']=$_POST["wordsstory"];
+        $_SESSION['location']=$_POST["location"];
+        $_SESSION['education']=$_POST["education"];
+        $_SESSION['email_contact']=$_POST["email_contact"];
+        $_SESSION['job']=$_POST["job"];
         $res = mysqli_query($c,$q);
         redirect_to("ume/profile","Account information successfully created!");
     }else{
@@ -305,8 +340,15 @@ $mediafiles = "";
         ,education='" . mysqli_real_escape_string($c,$_POST["education"]) ."'
         ,email_contact='" . mysqli_real_escape_string($c,$_POST["email_contact"]) ."'
 
+
         WHERE user_id='" . $_SESSION["user_id"] . "'";
          $res = mysqli_query($c,$q);
+         $_SESSION['contact']=$_POST["contact"];
+        $_SESSION['wordsstory']=$_POST["wordsstory"];
+        $_SESSION['location']=$_POST["location"];
+        $_SESSION['education']=$_POST["education"];
+        $_SESSION['email_contact']=$_POST["email_contact"];
+        $_SESSION['job']=$_POST["job"];
          redirect_to("ume/profile","Profile information updated!");
     }
         

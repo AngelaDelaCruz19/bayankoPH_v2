@@ -100,7 +100,7 @@
    				       		<div class="d-flex justify-content-center mt-3" style="">
    					       		<img class="p-2" src="<?php echo $mainDIR; ?>/images/bklogo.png" alt="Second slide" style="height: 50px; width: 100px; background-color: white;">
    					       	</div>
-   					       	<h4 class="mt-4 html_fill_wordsstory"></h4>
+   					       	<h4 class="mt-4"><?php echo $_SESSION['wordsstory'];?></h4>
    				       	</center>
    	               </div>
 	               </div>	
@@ -190,11 +190,11 @@
             </div>
             <div class="row text-dynamic m-3">
                <div class="col-sm-12">
-               <span class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-briefcase "></i> <span class="html_fill_job">Job</span><br>			
-               <span class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-phone-alt"></i> <span class="html_fill_contactno">Contact</span><br>			
-               <span class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-location-arrow"></i> <span class="html_fill_location">Place</span><br>
-               <span class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-book-reader"></i> <span class="html_fill_education">Education</span><br>			
-               <span class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-at"></i> <span class="html_fill_emailcontact">Email</span><br>
+               <span class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-briefcase "></i> <span class=""><?php echo $_SESSION['job'];?></span><br>			
+               <span class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-phone-alt"></i> <span class=""><?php echo $_SESSION['contact'];?></span><br>			
+               <span class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-location-arrow"></i> <span class=""><?php echo $_SESSION['location'];?></span><br>
+               <span class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-book-reader"></i> <span class=""><?php echo $_SESSION['education'];?></span><br>			
+               <span class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-at"></i> <span class=""><?php echo $_SESSION['email_contact'];?></span><br>
                </div>
             </div>
             <div class="dropdown-divider m-3"></div>
@@ -297,13 +297,13 @@
                   <div class="pl-3 pr-3">
                      <h4 class="mb-4">Profile Information  <button type="button" class="btn btn-secondary float-right" data-dismiss="modal" data-toggle="modal" data-target="#editable_profile" ><i class="fas fa-user-edit"></i> Edit Info</button></h4>
                      <h5>6 Words Story</h5>
-                     <p class="html_fill_wordsstory">
+                     <p class=""><?php echo $_SESSION['wordsstory'];?>
                      </p>
-                     <p class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-briefcase "></i> <span class="html_fill_job">Job</span></p>
-                     <p class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-phone-alt"></i> <span class="html_fill_contactno">Contact</span></p>
-                     <p class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-location-arrow"></i> <span class="html_fill_location">Place</span></p>
-                     <p class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-book-reader"></i> <span class="html_fill_education">Education</span></p>
-                     <p class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-at"></i> <span class="html_fill_emailcontact">Email</span></p>
+                     <p class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-briefcase "></i> <span class=""><?php echo $_SESSION['job'];?></span></p>
+                     <p class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-phone-alt"></i> <span class=""><?php echo $_SESSION['contact'];?></span></p>
+                     <p class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-location-arrow"></i> <span class=""><?php echo $_SESSION['location'];?></span></p>
+                     <p class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-book-reader"></i> <span class=""><?php echo $_SESSION['education'];?></span></p>
+                     <p class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-at"></i> <span class=""><?php echo $_SESSION['email_contact'];?></span></p>
                   </div>
                </div>
             </div>
@@ -325,28 +325,28 @@
                      <div class="pl-3 pr-3">
                         <div class="form-group">
                            <label> 6 Words Story</label>
-                           <textarea type="text" name="wordsstory" class="form-control html_fill_wordsstory" placeholder="Be creative! Write your 6 Words Story" rows="6"></textarea>
+                           <textarea type="text" name="wordsstory" class="form-control" placeholder="Be creative! Write your 6 Words Story" rows="6" ><?php echo $_SESSION['wordsstory'];?></textarea>
                            <span id="nowords" style="color: red;font-size: 12px;">You only have 6 word to put.<span>
                         </div>
                         <div class="form-group">
-                           <label><i class="mt-3 fas fa-briefcase "></i> Job Description</label>
-                           <input type="text" name="job" class="form-control html_fill_job" placeholder="Where do you work and what do you do here?">
+                           <label><i class="mt-3 fas fa-briefcase"></i> Job Description</label>
+                           <input type="text" name="job" class="form-control html_fill_job" placeholder="Where do you work and what do you do here?" value="">
                         </div>
                         <div class="form-group">
                            <label><i class="mt-3 fas fa-phone-alt"></i> Contact Number</label>
-                           <input type="text" name="contact" class="form-control html_fill_contactno" placeholder="Contact information">
+                           <input type="text" name="contact" class="form-control html_fill_contactno" placeholder="Contact information" value="<?php echo $_SESSION['contact'];?>">
                         </div>
                         <div class="form-group">
                            <label><i class="mt-3 fas fa-location-arrow"></i> Where do you live</label>
-                           <input type="text" name="location" class="form-control html_fill_location" placeholder="Where do you live?">
+                           <input type="text" name="location" class="form-control html_fill_location" placeholder="Where do you live?" value="<?php echo $_SESSION['location'];?>">
                         </div>
                         <div class="form-group">
                            <label><i class="mt-3 fas fa-book-reader"></i> Education</label>
-                           <input type="text" name="education"  class="form-control html_fill_education" placeholder="Education information">
+                           <input type="text" name="education"  class="form-control html_fill_education" placeholder="Education information" value="<?php echo $_SESSION['education'];?>">
                         </div>
                         <div class="form-group">
                            <label><i class="mt-3 fas fa-at"></i>Contact Email</label>
-                           <input type="text" name="email_contact" class="form-control html_fill_emailcontact" placeholder="Secondary email">
+                           <input type="text" name="email_contact" class="form-control html_fill_emailcontact" placeholder="Secondary email" value="<?php echo $_SESSION['email_contact'];?>">
                         </div>
                      </div>
                   </div>
@@ -381,7 +381,6 @@
     $('form#updatesecondinfo').submit(function(e) {
       if($('#nowords').is(":visible")){
          alert('Cant update your information, please check your 6 words story');
-          e.preventDefault();
       }else{
 
       }
@@ -403,7 +402,7 @@ function AfterShareAction(){
    $(document).ready(function() {
       GetNewsFeed("me");
       GetAllFriends();
-      // GetProfileInfoBySpecificID(<?php echo json_encode($_SESSION["user_id"]); ?>);
+      GetProfileInfoBySpecificID(<?php echo json_encode($_SESSION["user_id"]); ?>);
    });
 
 // AppearSecondaryInfotoPage();

@@ -32,7 +32,6 @@
                            <p class="font-weight-bold">Name</p>
                         </div>
                         <div class="col-lg-8 col-sm-12">
-
                            <form id="edit_name" method="post" enctype="multipart/form-data"  onsubmit="return;">
                               <span class="" id="bk_name"><?php echo $_SESSION["fullname"];?></span>
                               <input type="hidden" name="tag" value="UPDATE_FULL_NAME">
@@ -50,9 +49,9 @@
                         </div>
                         <div class="col-lg-8 col-sm-12">
                            <form id="edit_number" method="post" enctype="multipart/form-data"  onsubmit="return;">
-                              <span class="html_fill_contactno" id="bk_num"></span>
+                              <span class="" id="bk_num"><?php echo $_SESSION['contact'];?></span>
                               <input type="hidden" name="tag" value="UPDATE_NUMBER">           
-                              <input id="inp_number" type="text" name="e_number" class="mt-1 mb-1" required="" style="display: none; width: 80%" placeholder="Contact number">
+                              <input id="inp_number" type="text" name="e_number" class="mt-1 mb-1 " required="" style="display: none; width: 80%" placeholder="Contact number" value="<?php echo $_SESSION['contact'];?>">
                               <input type="submit" style="visibility: hidden;">
                               <a href="#" id="e_number"><i class="fas fa-edit float-right"></i></a>
                            </form>
@@ -63,7 +62,7 @@
                            <p class="font-weight-bold">Ad Account Contact</p>
                         </div>
                         <div class="col-lg-8 col-sm-12">
-                           <span class="html_fill_emailcontact"></span><a href="#"><i class="fas fa-edit float-right"></i></a>
+                           <span class=""><?php echo $_SESSION['email_contact'];?></span><a href="#"><i class="fas fa-edit float-right"></i></a>
                         </div>
                      </div>
                      <div class="row">
@@ -513,6 +512,7 @@
        $("#e_number").click(function(){
          $('#bk_num').toggle('show');
          $('#inp_number').toggle('show');
+
        });
    });
    $('form#edit_name').submit(function(e) {
@@ -533,21 +533,16 @@
          }
        })
      });
-   $('form#edit_name').submit(function(e) {
-      
-         var fname = $('#inp_fname').val();
-         var mname = $('#inp_mname').val(); 
-         var lname = $('#inp_lname').val(); 
+   $('form#edit_number').submit(function(e) {
+         var number = $('#inp_number').val(); 
          $.ajax({
          type: "POST",
          url: "../server/server.php",
-         data : {tag: "UPDATE_FULL_NAME",fname:fname,mname:mname,lname:lname},
+         data : {tag: "UPDATE_NUMBER",number:number},
          success: function(data){
-         
-         $('#bk_name').toggle('show');
-           $('#inp_fname').css('display','none');
-           $('#inp_mname').css('display','none');
-           $('#inp_lname').css('display','none');
+         $('#bk_num').toggle('show');
+           $('#inp_number').css('display','none');
+           alert(data);
          }
        })
      });
