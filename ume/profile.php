@@ -194,7 +194,7 @@
                <span class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-phone-alt"></i> <span class=""><?php echo $_SESSION['contact'];?></span><br>			
                <span class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-location-arrow"></i> <span class=""><?php echo $_SESSION['location'];?></span><br>
                <span class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-book-reader"></i> <span class=""><?php echo $_SESSION['education'];?></span><br>			
-               <span class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-at"></i> <span class=""><?php echo $_SESSION['email_contact'];?></span><br>
+               <span class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-at"></i> <span class=""><?php echo $_SESSION['email'];?></span><br>
                </div>
             </div>
             <div class="dropdown-divider m-3"></div>
@@ -303,7 +303,7 @@
                      <p class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-phone-alt"></i> <span class=""><?php echo $_SESSION['contact'];?></span></p>
                      <p class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-location-arrow"></i> <span class=""><?php echo $_SESSION['location'];?></span></p>
                      <p class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-book-reader"></i> <span class=""><?php echo $_SESSION['education'];?></span></p>
-                     <p class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-at"></i> <span class=""><?php echo $_SESSION['email_contact'];?></span></p>
+                     <p class=" flex-wrap align-content-center " ><i class="mt-3 fas fa-at"></i> <span class=""><?php echo $_SESSION['email'];?></span></p>
                   </div>
                </div>
             </div>
@@ -346,7 +346,7 @@
                         </div>
                         <div class="form-group">
                            <label><i class="mt-3 fas fa-at"></i>Contact Email</label>
-                           <input type="text" name="email_contact" class="form-control html_fill_emailcontact" placeholder="Secondary email" value="<?php echo $_SESSION['email_contact'];?>">
+                           <input type="text" name="email_contact" class="form-control " placeholder="Secondary email" value="<?php echo $_SESSION['email'];?>">
                         </div>
                      </div>
                   </div>

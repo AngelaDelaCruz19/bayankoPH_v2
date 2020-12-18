@@ -62,7 +62,14 @@
                            <p class="font-weight-bold">Ad Account Contact</p>
                         </div>
                         <div class="col-lg-8 col-sm-12">
-                           <span class=""><?php echo $_SESSION['email_contact'];?></span><a href="#"><i class="fas fa-edit float-right"></i></a>
+                           <form id="edit_email" method="post" enctype="multipart/form-data"  onsubmit="return;">
+                              <span class="" id="bk_email"><?php echo $_SESSION['email'];?></span>
+                              <input type="hidden" name="tag" value="UPDATE_EMAIL">           
+                              <input id="inp_email" type="text" name="e_email" class="mt-1 mb-1 " required="" style="display: none; width: 80%" placeholder="Email" value="<?php echo $_SESSION['email'];?>">
+                              <input type="submit" style="visibility: hidden;">
+                              <a href="#" id="e_email"><i class="fas fa-edit float-right"></i></a>
+                           </form>
+                           
                         </div>
                      </div>
                      <div class="row">
@@ -70,7 +77,13 @@
                            <p class="font-weight-bold">Backup Contact</p>
                         </div>
                         <div class="col-lg-8 col-sm-12">
-                           <span>arahangela@depedmarikina.ph</span><a href="#"><i class="fas fa-edit float-right"></i></a>
+                           <form id="edit_sec_email" method="post" enctype="multipart/form-data"  onsubmit="return;">
+                              <span id="bk_sec_email"><?php echo $_SESSION['email_contact'];?></span>
+                              <input type="hidden" name="tag" value="UPDATE_EMAIL">           
+                              <input id="inp_sec_email" type="text" name="e_sec_email" class="mt-1 mb-1 " required="" style="display: none; width: 80%" placeholder="Backup email" value="<?php echo $_SESSION['email_contact'];?>">
+                              <input type="submit" style="visibility: hidden;">
+                              <a href="#" id="e_sec_email"><i class="fas fa-edit float-right"></i></a>
+                           </form>
                         </div>
                      </div>
                   </div>
@@ -514,6 +527,16 @@
          $('#inp_number').toggle('show');
 
        });
+       $("#e_email").click(function(){
+         $('#bk_email').toggle('show');
+         $('#inp_email').toggle('show');
+
+       });
+       $("#e_sec_email").click(function(){
+         $('#bk_sec_email').toggle('show');
+         $('#inp_sec_email').toggle('show');
+
+       });
    });
    $('form#edit_name').submit(function(e) {
       
@@ -542,6 +565,32 @@
          success: function(data){
          $('#bk_num').toggle('show');
            $('#inp_number').css('display','none');
+           alert(data);
+         }
+       })
+     });
+   $('form#edit_email').submit(function(e) {
+         var email = $('#inp_email').val(); 
+         $.ajax({
+         type: "POST",
+         url: "../server/server.php",
+         data : {tag: "UPDATE_EMAIL",email:email},
+         success: function(data){
+         $('#bk_email').toggle('show');
+           $('#inp_email').css('display','none');
+           alert(data);
+         }
+       })
+     });
+   $('form#edit_sec_email').submit(function(e) {
+         var sec_email = $('#inp_sec_email').val(); 
+         $.ajax({
+         type: "POST",
+         url: "../server/server.php",
+         data : {tag: "UPDATE_SEC_EMAIL",sec_email:sec_email},
+         success: function(data){
+         $('#bk_sec_email').toggle('show');
+           $('#inp_sec_email').css('display','none');
            alert(data);
          }
        })

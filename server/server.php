@@ -33,11 +33,39 @@ switch ($tag)
          $res = mysqli_query($c,$q);
          if ($c->query($q) === TRUE) {
             $_SESSION['contact']=$number;
-                echo $number;
                 return'';
             } else {
               echo "Error updating record: " . $c->error;
             }
+            $req = mysqli_query($c, $q) or die(mysqli_error($c));      
+    break;
+    case 'UPDATE_EMAIL':
+    $email=$_POST["email"];
+        $q = "UPDATE users SET
+        email='" . mysqli_real_escape_string($c,$email) ."'
+
+        WHERE id='" . $_SESSION["user_id"] . "'";
+         $res = mysqli_query($c,$q);
+         if ($c->query($q) === TRUE) {
+            $_SESSION['email']=$email;
+                echo $email;
+                return'';
+            } else {
+              echo "Error updating record: " . $c->error;
+            }
+            $req = mysqli_query($c, $q) or die(mysqli_error($c));      
+    break;
+    case 'UPDATE_SEC_EMAIL':
+    $sec_email=$_POST["sec_email"];
+        $q = "UPDATE ume_user_secondaryinfo SET email_contact='" . mysqli_real_escape_string($c,$sec_email) ."' WHERE user_id='" . $_SESSION["user_id"] . "'";
+         $res = mysqli_query($c,$q);
+         if ($c->query($q) === TRUE) {
+            $_SESSION['email_contact']=$sec_email;
+                echo $sec_email;
+                return'';
+        } else {
+          echo "Error updating record: " . $c->error;
+        }
             $req = mysqli_query($c, $q) or die(mysqli_error($c));      
     break;
     case 'UPDATE_FULL_NAME':
@@ -319,16 +347,22 @@ $mediafiles = "";
         ,contact='" . mysqli_real_escape_string($c,$_POST["contact"]) ."'
         ,location='" . mysqli_real_escape_string($c,$_POST["location"]) ."'
         ,education='" . mysqli_real_escape_string($c,$_POST["education"]) ."'
-        ,email_contact='" . mysqli_real_escape_string($c,$_POST["email_contact"]) ."'
         ";
-         $_SESSION['contact']=$_POST["contact"];
-        $_SESSION['wordsstory']=$_POST["wordsstory"];
-        $_SESSION['location']=$_POST["location"];
-        $_SESSION['education']=$_POST["education"];
-        $_SESSION['email_contact']=$_POST["email_contact"];
-        $_SESSION['job']=$_POST["job"];
-        $res = mysqli_query($c,$q);
-        redirect_to("ume/profile","Account information successfully created!");
+        if ($c->query($q) === TRUE) {
+            $q = "UPDATE users SET email='" . $_POST["email_contact"] ."' WHERE id='" . $_SESSION["user_id"] . "'";
+            if ($c->query($q) === TRUE) {
+                $_SESSION['contact']=$_POST["contact"];
+                $_SESSION['wordsstory']=$_POST["wordsstory"];
+                $_SESSION['location']=$_POST["location"];
+                $_SESSION['education']=$_POST["education"];
+                $_SESSION['email']=$_POST["email_contact"];
+                $_SESSION['job']=$_POST["job"];
+                sredirect_to("ume/profile","Account information successfully created!");
+            }
+        } else {
+          echo "Error updating record: " . $c->error;
+        }
+        
     }else{
         //JUST UPDATE
         $q = "UPDATE ume_user_secondaryinfo SET
@@ -338,18 +372,24 @@ $mediafiles = "";
         ,contact='" . mysqli_real_escape_string($c,$_POST["contact"]) ."'
         ,location='" . mysqli_real_escape_string($c,$_POST["location"]) ."'
         ,education='" . mysqli_real_escape_string($c,$_POST["education"]) ."'
-        ,email_contact='" . mysqli_real_escape_string($c,$_POST["email_contact"]) ."'
-
-
         WHERE user_id='" . $_SESSION["user_id"] . "'";
-         $res = mysqli_query($c,$q);
-         $_SESSION['contact']=$_POST["contact"];
-        $_SESSION['wordsstory']=$_POST["wordsstory"];
-        $_SESSION['location']=$_POST["location"];
-        $_SESSION['education']=$_POST["education"];
-        $_SESSION['email_contact']=$_POST["email_contact"];
-        $_SESSION['job']=$_POST["job"];
-         redirect_to("ume/profile","Profile information updated!");
+        if ($c->query($q) === TRUE) {
+            $q = "UPDATE users SET email='" . $_POST["email_contact"] ."' WHERE id='" . $_SESSION["user_id"] . "'";
+            if ($c->query($q) === TRUE) {
+            $_SESSION['contact']=$_POST["contact"];
+            $_SESSION['wordsstory']=$_POST["wordsstory"];
+            $_SESSION['location']=$_POST["location"];
+            $_SESSION['education']=$_POST["education"];
+            $_SESSION['email']=$_POST["email_contact"];
+            $_SESSION['job']=$_POST["job"];
+            redirect_to("ume/profile","Profile information successfully updated");
+            }else {
+            echo "Error updating record: " . $c->error;
+            }
+        } else {
+          echo "Error updating record: " . $c->error;
+        
+        }
     }
         
         break;

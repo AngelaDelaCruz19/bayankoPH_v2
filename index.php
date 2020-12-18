@@ -163,7 +163,7 @@
                         <h2 class="text-dynamic  mt-3 mb-4">Featuring</h2>
                      </div>
                      <div class="col-6 mb-5">
-                        <a href="#" onclick="ShowSplash('U ME','umeaudio','images/sirtoby/34.jpg','ume/dashboard')">
+                        <a href="#" onclick="ShowSplash('','umeaudio','images/splash/ume_splash.png','ume/dashboard')">
                            <div class="app_icon">
                               <img src="images/logos/ume.png" class="uni_iconsize">
                            </div>

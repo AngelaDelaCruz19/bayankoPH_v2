@@ -285,7 +285,7 @@ if(!isset($_GET["kword"])){
          $(".html_fill_job").html(data["job"]);
 
          // motto 
-         $(":input.html_fill_wordsstory").val(data["wordsstory"]);
+         $(":input.html_fill_wordsstory").val(data[ "wordsstory"]);
          // contact no 
          $(":input.html_fill_contactno").val(data["contact"]);
          // location 
