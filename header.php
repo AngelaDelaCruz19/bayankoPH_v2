@@ -39,14 +39,14 @@
 					<form class="form-inline my-2 my-lg-0" action="server/server.php" method="POST">
 						<input type="hidden" name="tag" value="SYS_LOGOUT">
 						<button class="btn btn-link" type="submit" class="pr-3 pl-3"><i class="fas fa-sign-out-alt"></i> Logout</button>
-						<a class="pr-3 pl-3" href="#" onclick="NightAndLightToggle()"><i class="fas fa-moon"></i></a>
+						<a class="pr-3 pl-3" href="#ediThemeModal"><i class="fas fa-moon"></i></a>
 					</form>
 				<?php
 	    		}else{
 				?>
 					<a class="pr-3 pl-3" href="login.php"><i class="fas fa-sign-in-alt"></i> Login</a>
 					<a class="pr-3 pl-3" href="signup.php"><i class="fas fa-user-circle"></i> Sign-up</a>
-					<a class="pr-3 pl-3" href="#" onclick="NightAndLightToggle()"><i class="fas fa-moon"></i></a>
+					<!--a class="pr-3 pl-3" href="#" onclick="NightAndLightToggle()"><i class="fas fa-moon"></i></a-->
 				<?php
 	    		}
 	    	?>

@@ -205,15 +205,6 @@ a{
 	box-shadow: 0px 5px 10px rgba(0,0,0,0.1);
 	border-radius: 20px;
 }
-.mod-body{
-	background-color: white;
-}
-.mod-head{
-	background-color: white;
-}
-.mod-foot{
-	background-color: white;
-}
 .btn-ol-dynamic{
 	border-color: #343A40;
 }
@@ -230,7 +221,6 @@ a{
   background: url(https://img.icons8.com/ios/30/000000/search--v1.png) center center no-repeat;
   text-indent: -10000px;
   border: none;
-  position: absolute;
   top: 0;
   right: 0;
   z-index: 2;
@@ -239,5 +229,27 @@ a{
   cursor: pointer;
   transition: opacity .4s ease;
   object-fit: cover;
+}
+.mod-head{
+	background-color: white;
+}
+.mod-body{
+	background-color: white;
+
+}
+.mod-foot{
+	background-color: white;
+}
+.mod-body2{
+	background-color: white;
+	border-color: rgba(255,255,255,0.1);
+}
+.mod-head2{
+	background-color: white;
+	border-color: rgba(255,255,255,0.1);
+}
+.mod-foot2{
+	background-color: white;
+	border-color: rgba(255,255,255,0.1);
 }
 </style>

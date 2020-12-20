@@ -4,6 +4,7 @@
  // $mainDIR = "http://" . $_SERVER["HTTP_HOST"];
 	$mainDIR = "http://" . $_SERVER["HTTP_HOST"]  ."/bayankoPH";
     ?>
+
 <!-- BOOTSTRAP -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -20,8 +21,10 @@
 <!-- DATA TABLE -->
 <link rel="stylesheet" type="text/css" href="<?php echo $mainDIR; ?>/apicore/DataTables/datatables.min.css"/>
 <script type="text/javascript" src="<?php echo $mainDIR; ?>/apicore/DataTables/datatables.min.js"></script>
-
-
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
 <style type="text/css">
 	   .slide_thumbnail{
@@ -429,12 +432,17 @@ border-radius: 1000px;
 	background-position: center;
 	background-size: cover;
 }
-.mod-body{
-	background-color: #27242C;
+
+
+.decore-none{
+	text-decoration: none;
 }
-.mod-head{
-	background-color: #181719;
+.decore-none:hover{
+	text-decoration: none;
 }
+
+
+
 .no-res-link{
 	text-decoration: none;
 }
@@ -501,32 +509,6 @@ border-radius: 1000px;
 
 /**/
 </style>
-<?php 
-if(isset($_SESSION["page_mode"])){
-		if($_SESSION["page_mode"]  == "0"){
-			include 'style_light.php';
-		}else{
-			include 'style_dark.php';
-		}
-	}else{
-		include 'style_dark.php';
-	}
- ?>
-
- <script type="text/javascript">
-	function NightAndLightToggle(){
-		$.ajax({
-		type:"POST",
-		url:<?php echo json_encode($mainDIR); ?> + "/functions/functions.php",
-		data: {tag : "toggle_night_dark_mod"},
-		success: function(data){
-			location.reload();
-		}
-	})
-	}
-
-</script>
-
 <style type="text/css">
 /*@import url(https://fonts.googleapis.com/css?family=Lato:100,300,400,700);
 @import url(https://raw.github.com/FortAwesome/Font-Awesome/master/docs/assets/css/font-awesome.min.css);*/
@@ -574,4 +556,158 @@ if(isset($_SESSION["page_mode"])){
 .input[type="submit"]:hover {
   opacity: 0.8;
 }
+#backtotop {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#backtotop:hover {
+  background-color: #555;
+}
+.modal-sided{
+  top: 10vh;
+  right: 30vw;
+}
 </style>
+
+<style type="text/css">
+
+/*
+edit theme modal
+*/	
+ .modal.left .modal-dialog {
+	position:fixed;
+	left: 0;
+	margin: 88px auto auto auto;
+	width: 320px;
+	height: 100%;
+	-webkit-transform: translate3d(0%, 0, 0);
+	-ms-transform: translate3d(0%, 0, 0);
+	-o-transform: translate3d(0%, 0, 0);
+	transform: translate3d(0%, 0, 0);
+}
+
+.modal.left .modal-content {
+	height: 100%;
+	overflow-y: auto;
+}
+
+li a.active.ediTheme{
+	color:#636363;
+}
+
+li a.ediTheme{
+	color:#B3B3B3
+}
+
+li.ediTheme{ 
+	text-align: center;
+}
+
+table.opTheme{
+	cursor: pointer;
+	width: 100%;
+}
+
+table.opTheme tr{
+	height: 64px;
+}
+
+table.opTheme td{
+	width: 33.33%;
+}
+
+</style>
+<?php
+ 
+if(isset($_SESSION["page_mode"])){
+	$page_mode = $_SESSION["page_mode"];
+	if($page_mode==0){
+			include 'style_light.php';
+		}
+	elseif($page_mode==2){
+			include 'style01.php';
+			}
+	elseif($page_mode==3){
+			include 'style02.php';
+			}
+	elseif($page_mode==4){
+			include 'style03.php';
+			}
+	elseif($page_mode==5){
+			include 'style04.php';
+		}
+	elseif($page_mode==6){
+			include 'style05.php';
+		}
+	elseif($page_mode==7){
+			include 'style06.php';
+		}
+	elseif($page_mode==8){
+			include 'style07.php';
+		}
+	elseif($page_mode==9){
+			include 'style08.php';
+		}
+	elseif($page_mode==10){
+			include 'style09.php';
+		}
+	elseif($page_mode==11){
+			include 'style10.php';
+		}
+	elseif($page_mode==12){
+			include 'style11.php';
+		}
+	elseif($page_mode==13){
+			include 'style12.php';
+		}
+	elseif($page_mode==14){
+			include 'style13.php';
+		}
+	elseif($page_mode==15){
+			include 'style14.php';
+		}
+	elseif($page_mode==16){
+			include 'style15.php';
+		}
+	elseif($page_mode==17){
+			include 'style16.php';
+		}				
+	}else{
+		include 'style_dark.php';
+	}
+ 
+?>
+
+ <script type="text/javascript">
+
+	$(document).ready(function(){
+      	$('.radio-group .radio').click(function(){
+        	$(this).parent().find('.radio').removeClass('selected');
+          	$(this).addClass('selected');
+          	var selecThemed = $(this).attr('data-value');
+
+			$.ajax({
+				type:"POST",
+				url:<?php echo json_encode($mainDIR); ?> + "/functions/functions.php",
+				data: { selecThemed },
+				success: function(data){
+					location.reload();
+				}
+			})
+
+      });
+   });
+</script>
+

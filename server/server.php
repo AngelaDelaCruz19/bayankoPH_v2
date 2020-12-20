@@ -3,6 +3,7 @@ if (session_status() == PHP_SESSION_NONE)
 {
     session_start();
 }
+// $c = mysqli_connect("198.71.227.96:3306","bayankouser","bAV@|\|k0HDEEBee","ph13464091341_");
 $c = mysqli_connect("localhost","root","","bayanko");
 date_default_timezone_set('Asia/Manila');
  // $mainDIR = "http://" . $_SERVER["HTTP_HOST"];
@@ -78,7 +79,7 @@ switch ($tag)
         ,lname='" . mysqli_real_escape_string($c,$lname) ."'
 
         WHERE id='" . $_SESSION["user_id"] . "'";
-         $res = mysqli_query($c,$q);
+         $res = mysqli_query($c,$q); 
          if ($c->query($q) === TRUE) {
                 $_SESSION["fname"] = $fname;
                 $_SESSION["mname"] = $mname;
@@ -318,20 +319,21 @@ $mediafiles = "";
         $json_data = mysqli_fetch_all($req, MYSQLI_ASSOC);
         
         for ($i=0; $i < count( $json_data); $i++) { 
-                echo "<tr>";
-                if($json_data[$i]["id"] == $_SESSION["user_id"]){
-                echo " <td><a href='profile.php'>
-                <span class='mb-0 mt-0' style=''><img style=' background-image: url(" . $_SESSION["pic_profile"]  . ");' class='post_profile '></span>
-                " . $json_data[$i]["fname"] . " " . $json_data[$i]["mname"] . " " . $json_data[$i]["lname"] .  "</a></td>";
-                }else{
-                echo " <td>
-                <a href='profile_other.php'>
-                <span class='mb-0 mt-0' style=''><img style=' background-image: url(" . $json_data[$i]["pic_profile"] . ");' class='post_profile '></span>
-                " . $json_data[$i]["fname"] . " " . $json_data[$i]["mname"] . " " . $json_data[$i]["lname"] .  "</a></td>";
-                }
-                echo "
-                <td><h4 class='mt-2'>" . translate_react($json_data[$i]["react_type"]) . "</h4></td>
-                </tr>";
+            echo "<tr>";
+            if($json_data[$i]["id"] == $_SESSION["user_id"]){
+            echo " <td>
+            <a href='profile.php' >
+            <span class='mb-0 mt-0' style=''><img style=' background-image: url(" . $_SESSION["pic_profile"]  . ");' class='post_profile '></span>
+            " . $json_data[$i]["fname"] . " " . $json_data[$i]["mname"] . " " . $json_data[$i]["lname"] .  "</a></td>";
+            }else{
+            echo " <td>
+            <a href='profile_other.php'>
+            <span class='mb-0 mt-0' style='' ><img style=' background-image: url(" . $json_data[$i]["pic_profile"] . ");' class='post_profile '></span>
+            " . $json_data[$i]["fname"] . " " . $json_data[$i]["mname"] . " " . $json_data[$i]["lname"] .  "</a></td>";
+            }
+            echo "
+            <td><h4 class='mt-2'>" . translate_react($json_data[$i]["react_type"]) . "</h4></td>
+            </tr>"; 
         }
         break;
     case 'UPDATE_SECONDARYINFO_SPECIFIC':
@@ -807,7 +809,7 @@ if(mysqli_num_rows($req) != 0){
                     $avatar_comment = $mainDIR;
                     $react_view = reactions_viewer($json_data[$i]["post_id"]);
                     if($react_view != ""){
-                    $react_view ='<small><a href="#" data-toggle="modal" style="display:block" class="text-dynamic mt-2" data-target="#modal_reactions" data-postid="' . $json_data[$i]["post_id"] . '" onclick="GetAllPostReactors(this)" id="reaction_response_' . $i . '"> ' . $react_view  . '</a></small>';
+                    $react_view ='<small><a href="#" data-toggle="modal" style="display:block" class="text-dynamic mt-2 prof" data-target="#modal_reactions" data-postid="' . $json_data[$i]["post_id"] . '" onclick="GetAllPostReactors(this)" id="reaction_response_' . $i . '"> ' . $react_view  . '</a></small>';
                     }
                     $interacts='
                         <div class="col-lg-6">
@@ -850,7 +852,7 @@ if(mysqli_num_rows($req) != 0){
                     {
                         // LOGGED-IN USER
                          $sharedpostFooterHTML .= "<a href='profile.php'>
-                            <span class='mb-0'><img style=' background-image: url(" . $_SESSION["pic_profile"]  . ");' class='post_profile bg_contain'> " . $_SESSION["fullname"]  . "</span>
+                            <span class='mb-0'><img src='" . $_SESSION["pic_profile"]  ."' class='post_profile bg_contain'> " . $_SESSION["fullname"]  . "</span>
                             </a>";
                     }
                     else
@@ -903,14 +905,14 @@ if(mysqli_num_rows($req) != 0){
                     {
                         // LOGGED-IN USER
                         echo "<a href='profile.php'>
-                            <span class='mb-0'><img style=' background-image: url(" . $_SESSION["pic_profile"]  . ");' class='post_profile bg_contain'> " . $_SESSION["fullname"]  . "</span>
+                            <span class='mb-0'><img src='".$_SESSION['pic_profile']."' class='post_profile bg_contain'> " . $_SESSION["fullname"]  . "</span>
                             </a>";
                     }
                     else
                     {
                         // OTHER ACCOUNT
                         echo "<a href='profile_other.php?usr=" . $json_data[$i]["id"] . "'>
-                        <span class='mb-0'><img style=' background-image: url(" . $json_data[$i]["pic_profile"]. ");' class='post_profile bg_contain'> " . $userfullname  . "</span></a>";
+                        <span class='mb-0'><img src='" . $json_data[$i]["pic_profile"]. "' class='post_profile bg_contain'> " . $userfullname  . "</span></a>";
                     }
                 
                     echo $post_time;
@@ -1057,11 +1059,11 @@ echo $te;
                          <div class="p-3">
                             <div class="row">
                                 <div class="col-lg-8 pt-3 pr-3 pl-3">
-                                    <a href="#"><span> ' .  $react_view  . '</span></a>
+                                    <a href="#" ><span> ' .  $react_view  . '</span></a>
                                 </div>
                                 <div class="col-lg-4 pt-3 pr-3 pl-3" style="font-size: 20px;">
                                     <div class="d-flex justify-content-end ">
-                                        <a href="#" class="pr-2 pl-2"data-toggle="modal" data-target="#interacts"><span><i class="fas fa-grin-alt"></i></span></a>
+                                        <a href="#" class="pr-2 pl-2"data-toggle="modal" data-target="#interacts_' . $i . '"><span><i class="fas fa-grin-alt"></i></span></a>
                                         <a href="#" class="pr-2 pl-2"><span><i class="fas fa-paper-plane"></i></span></a>
                                         <a href="#" class="pr-2 pl-2" data-toggle="modal" data-target="#makeaComment"><span><i class="fas fa-comment-alt"></i></span></a>
                                        <a href="#" class="pr-2 pl-2" data-postid="' . $json_data[$i]["post_id"] . '" data-htmlpostidnumber="' . $i . '" onclick="PrepareShareModal(this)" data-fullnameshared="' . LoadUserFullnameByID($json_data[$i]["host"]) . '" data-profilepicsharer="' . LoadUserProfileLocationByID($json_data[$i]["host"]) . '" data-toggle="modal" data-target="#modal_sharepost" style="font-size: 20px;"><span><i class="fas fa-share-square"></i></span></a>
@@ -1070,7 +1072,7 @@ echo $te;
                             </div>
                             </div>
                             <div class="modal" tabindex="-1" role="dialog" id="makeaComment">
-                              <div class="modal-dialog text-dynamic" role="document">
+                              <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header mod-head">
                                     <h5 class="modal-title">Comments</h5>
@@ -1085,8 +1087,8 @@ echo $te;
                                 </div>
                               </div>
                             </div>
-                            <div class="modal" tabindex="-1" role="dialog" id="interacts">
-                              <div class="modal-dialog text-dynamic" role="document">
+                            <div class="modal" tabindex="-1" role="dialog" id="interacts_' . $i . '">
+                              <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header mod-head">
                                     <h5 class="modal-title">Interacts</h5>

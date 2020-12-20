@@ -13,6 +13,7 @@
       <div class="row text-dynamic">
          <div class="col-lg-3" id="first">
             <div class="p-3">
+
                <?php include'comp/side.php';?>
             </div>
             <!-- <div class="card m-3 card-dynamic" style="border:none;border-radius: 20px;">
@@ -100,7 +101,7 @@
    				       		<div class="d-flex justify-content-center mt-3" style="">
    					       		<img class="p-2" src="<?php echo $mainDIR; ?>/images/bklogo.png" alt="Second slide" style="height: 50px; width: 100px; background-color: white;">
    					       	</div>
-   					       	<h4 class="mt-4"><?php echo $_SESSION['wordsstory'];?></h4>
+   					       	<h4 class="mt-4 text-white"><?php echo $_SESSION['wordsstory'];?></h4>
    				       	</center>
    	               </div>
 	               </div>	
@@ -108,7 +109,6 @@
                </div>
                <script type="text/javascript">
                  
-                  //lahat ng ginagawa na function sa global_js ay di automatic gumagana okay? kailangan sya tawagin. mas advisable sa pinka baba ng page sya tatawagin
                </script>
                
                <div class="btn-group special nav nav-pills nav-fill" role="group" aria-label="Basic example" id="btn_group">
@@ -128,7 +128,8 @@
                <div class="tab-content">
                   <div class="tab-pane fade show active mt-3" id="m_view_posst" role="tabpanel" aria-labelledby="m_view_posst-tab" >
                      <!-- own post -->
-                     <div class=""><?php include "comp/share_status.php"; ?></div>
+                     <div class="">
+                        <?php include "comp/share_status.php"; ?></div>
                      <div style="overflow-y: scroll; overflow-x: hidden; height: 100vh;  scrollbar-width: thin;">
                         <div id="post_panel"  class="mt-3">
                            <center>
@@ -182,6 +183,7 @@
                <div class="card card-dynamic">
                   <div class="card-body">
                      <?php include "comp/clock.php"; ?>
+
                   </div>
                </div>
             </div>
@@ -214,6 +216,7 @@
             		
             	</div>
             </div>
+
             
             <!-- <h5 class="mt-3">Highlight Stories</h5>
             <div class="m-3">
@@ -364,6 +367,16 @@
 </html>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script>
+$(document).ready(function(){
+   jQuery.noConflict();
+    $('[data-toggle="popover"]').popover({
+        placement : 'top',
+        trigger : 'hover'
+    });
+
+});
+</script>
 <!-- own post -->
 <script type="text/javascript">
    $('#nowords').hide();

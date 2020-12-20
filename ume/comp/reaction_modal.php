@@ -1,14 +1,16 @@
-<div class="modal" tabindex="-1" role="dialog" id="modal_reactions">
-  <div class="modal-dialog text-muted" role="document">
-    <div class="modal-content">
-      <div class="modal-header mod-head">
+<div class="modal" tabindex="-1" role="dialog" id="modal_reactions" >
+  <div class="modal-dialog modal-sided text-muted" role="document" >
+    <div class="modal-content" style="border-radius:18px;background-color: transparent;border:none;">
+      <div class="modal-header mod-head" style="border-radius:  18px 18px 0px 0px ; border:none;">
         <h5 class="modal-title">Interacts</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body mod-body">
+      <div class="modal-body mod-body" style="border-radius: 0px 0px  18px 18px">
       	<table class="table borderless" id="tbl_allpostreactors">
+       
+
       	   
       	</table>
       </div>
@@ -17,6 +19,7 @@
 </div>
 
 <script type="text/javascript">
+  
   function GetAllPostReactors(control_obj){
     var postid = $(control_obj).data("postid");
     // alert(postid);
@@ -55,7 +58,7 @@
 </div>
 
 <script type="text/javascript">
-
+  
   function PrepareDeletePostDialog(oid){
     $("#del_postid").val( $(oid).data("postid"));
     $("#del_htmlpostid").val($(oid).data("htmlpostidnumber"));

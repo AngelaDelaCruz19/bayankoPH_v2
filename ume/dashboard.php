@@ -26,7 +26,6 @@
 					</center>
 				</div>
 		</div>
-		
 	</div>
 		</div>
 		<div class="col-lg-3 mb-3">
@@ -118,12 +117,27 @@
 		GetNewsFeed();
 	}
    $(document).ready(function() {
+   	"use strict";
+  
+  $(".prof").hover(
+    function () {
+      let refID = '#' + $(this).data('modal_reactions');
+      $(refID).modal('show');
+    },
+    function () {
+      let refID = '#' + $(this).data('modal_reactions');
+      $(refID).modal('hide');
+    });
    	GetNewsFeed();
    	GetAllFriends();
    	$("#imgInp").change(function() {
    	readURL(this,"image_preview");
    	});
    });
+   	$('[data-toggle="popover"]').popover({
+      placement : 'top',
+      trigger : 'hover'
+    });
 
 
    var currstat = "";

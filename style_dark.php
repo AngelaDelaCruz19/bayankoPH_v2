@@ -99,6 +99,10 @@ background-color: transparent;
 	text-decoration: none;
 	color: white;
 }
+a.black{
+	text-decoration: none;
+	color: black;
+}
 </style>
 <script src="https://kit.fontawesome.com/a936531bd4.js" crossorigin="anonymous"></script>
 <style>
@@ -186,6 +190,14 @@ background-color: transparent;
 	box-shadow: 0px 5px 10px rgba(0,0,0,0.1);
 	border-radius: 20px;
 }
+
+.btn-ol-dynamic{
+	border-color: white;
+}
+.btn-ol-dynamic:hover{
+	background-color: white;
+	color: black;
+}
 .mod-body{
 	background-color: #27242C;
 	border-color: rgba(255,255,255,0.1);
@@ -197,13 +209,6 @@ background-color: transparent;
 .mod-foot{
 	background-color: #181719;
 	border-color: rgba(255,255,255,0.1);
-}
-.btn-ol-dynamic{
-	border-color: white;
-}
-.btn-ol-dynamic:hover{
-	background-color: white;
-	color: black;
 }
 
 .input[type="submit"] {

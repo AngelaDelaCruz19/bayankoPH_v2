@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg  nav-fixed nav-bottomborder nav-dynamic text-dynamic2" id="nav">
   <button class="navbar-toggler text-dynamic2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span id="name" style="font-size: 15px;"><a href="profile.php text-dynamic"><img class="post_profile" style="background-image: url(<?php echo $_SESSION['pic_profile'];  ?>);"></a><?php echo $_SESSION["fname"] . "'s "; ?> UME</span>
+    <span id="name" style="font-size: 15px;"><a href="profile.php?usr=<?php echo $_SESSION['user_id']; ?>" class="text-dynamic"><img class="post_profile" style="background-image: url(<?php echo $_SESSION['pic_profile'];  ?>);"></a><?php echo $_SESSION["fname"] . "'s "; ?> UME</span>
   </button>
   
 
@@ -8,7 +8,10 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle text-dynamic2" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         <img class="post_profile photo2" style="background-image: url(<?php echo $_SESSION['pic_profile'];  ?>);"><?php echo $_SESSION["fname"] . "'s "; ?> BayankoPH
+         <!-- <img class="post_profile photo2" style="background-image: url(<?php echo $_SESSION['pic_profile'];  ?>);"> -->
+         <img class="post_profile photo2" src="<?php echo $_SESSION['pic_profile'];  ?>">
+
+         <?php echo $_SESSION["fname"] . "'s "; ?> BayankoPH
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item iconed" href="../index.php"><i class="fas fa-house-user"></i> BayankoPH</a>
@@ -43,7 +46,9 @@
         </a>
       </li>
       <li  class="nav-item m-2">
-        <a href="#" onclick="NightAndLightToggle()" type="button" class="btn-circle btn gray text-dynamic2"><i class="fas fa-moon"></i></a>
+        <!--a href="#" onclick="NightAndLightToggle()" type="button" class="btn-circle btn gray text-dynamic2"><i class="fas fa-moon"></i></a-->
+        <a href="#" data-toggle="modal" data-target="#ediThemeModal" type="button" class="btn-circle btn gray text-dynamic2"><i class="fas fa-moon"></i></a>
+
       </li>
       <li  class="nav-item m-2">
         <a class="btn-circle btn gray text-dynamic2" style="width: 40px;" href="#">
@@ -56,6 +61,7 @@
          <i class="fas fa-plus-circle"></i> Create Post
         </a>
       </li> -->
+      
 
     </ul>
 
@@ -124,11 +130,11 @@
           </div>';
 } ?>
 <script type="text/javascript">
+
   GlobalRunner();
-  $(document).ready(function() {
-      SecondaryInformation();
-   });
+  SecondaryInformation();
 </script>
+
 
 <br>
 <br>
